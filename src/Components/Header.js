@@ -11,10 +11,10 @@ const useStyles = makeStyles((theme) => ({
         color: "deeppink",
         textShadow: "1px 1px darkmagenta"
     }
-}))
+}));
 
 export const Header = () => {
-    const styles = useStyles()
+    const styles = useStyles();
 
     return (
         <Typography className={styles.root} component="h1" variant="h5">

@@ -1,28 +1,10 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import { Header } from './Components/Header'
-import {StepOne} from "./Components/StepOne";
-
-const Step1 = () => {
-    return (
-        <div>Step1</div>
-    );
-};
-const Step2 = () => {
-    return (
-        <div>Step2</div>
-    );
-};
-const Step3 = () => {
-    return (
-        <div>Step3</div>
-    );
-};
-const Result = () => {
-    return (
-        <div>Result</div>
-    );
-};
+import {StepOne} from "./StepOne";
+import {StepTwo} from "./StepTwo";
+import {StepThree} from "./StepThree";
+import {Result} from "./Result";
 
 function App() {
     return (
@@ -30,8 +12,8 @@ function App() {
             <Header/>
                 <Routes>
                     <Route exact path="/" element={<StepOne />}/>
-                    <Route exact path="/step2" element={<Step2 />}/>
-                    <Route exact path="/step3" element={<Step3 />}/>
+                    <Route exact path="/step2" element={<StepTwo />}/>
+                    <Route exact path="/step3" element={<StepThree />}/>
                     <Route exact path="/result" element={<Result />}/>
                 </Routes>
         </>

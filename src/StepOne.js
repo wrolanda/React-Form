@@ -1,12 +1,14 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import {Form} from "./Form";
-import {Input} from "./Input";
+import {Form} from "./Components/Form";
+import {Input} from "./Components/Input";
 import {useForm} from "react-hook-form";
-import {MainContainer} from "./MainContainer";
-import {PrimaryButton} from "./PrimaryButton";
+import {MainContainer} from "./Components/MainContainer";
+import {PrimaryButton} from "./Components/PrimaryButton";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import { useNavigate } from 'react-router-dom';
+import {useData} from "./DataContext";
 
 const schema = yup.object().shape({
     firstName: yup
@@ -20,19 +22,23 @@ const schema = yup.object().shape({
 });
 
 export const StepOne = () => {
+    const history = useNavigate();
+    const {data, setValues} = useData();
     const {register, handleSubmit, formState: {errors}} = useForm({
+        defaultValues: { firstName: data.firstName, lastName: data.lastName },
         mode: "onBlur",
         resolver: yupResolver(schema),
     });
 
     const onSubmit = (data) => {
-        console.log(data);
-    }
+        history("/step2");
+        setValues(data);
+    };
 
     return (
         <MainContainer>
             <Typography component="h2" variant="h5">
-                Step 1
+                🦄 Step 1
             </Typography>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input
