@@ -19,6 +19,8 @@ import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Swal from "sweetalert2";
 import Confetti from "react-confetti";
+import Button from "@material-ui/core/Button";
+import {PlacesRoomService} from "material-ui/svg-icons/index.es";
 
 const useStyles = makeStyles({
    root: {
@@ -59,6 +61,7 @@ export const Result = () => {
    // };
 
    const onSubmit2 = () => {
+      console.log(entries);
       Swal.fire("Great job!", "You've passed the challenge!", "success");
       setSuccess(true);
    };
@@ -113,7 +116,7 @@ export const Result = () => {
                   </List>
                </>
             )}
-            <PrimaryButton onClick={onSubmit2}>Submit</PrimaryButton>
+            <PrimaryButton onClick={ onSubmit2 }>Submit</PrimaryButton>
             <Link to="/">Start over</Link>
          </MainContainer>
       </>
