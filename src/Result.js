@@ -19,8 +19,6 @@ import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Swal from "sweetalert2";
 import Confetti from "react-confetti";
-import Button from "@material-ui/core/Button";
-import {PlacesRoomService} from "material-ui/svg-icons/index.es";
 
 const useStyles = makeStyles({
    root: {
@@ -39,32 +37,27 @@ export const Result = () => {
       entry[0] !== "files");
    const {files} = data;
 
-   // const onSubmit1 = async () => {
-   //    const formData = new FormData();
-   //    if (data.files) {
-   //       data.files.forEach((file) => {
-   //          formData.append("files", file, file.name)
-   //       })
-   //    }
-   //    entries.forEach((entry) => {
-   //       formData.append(entry[0], entry[1])
-   //    });
-   //    const res = await fetch("http://localhost:4000/", {
-   //       method: "POST",
-   //       body: formData
-   //
-   //    });
-   //    if (res.status === 200) {
-   //       Swal.fire("Great job!", "You've passed the challenge!", "success");
-   //       setSuccess(true);
-   //    }
-   // };
+   const onSubmit = async () => {
+      const formData = new FormData();
+      if (data.files) {
+         data.files.forEach((file) => {
+            formData.append("files", file, file.name)
+         })
+      }
+      entries.forEach((entry) => {
+         formData.append(entry[0], entry[1])
+      });
+      const res = await fetch("http://localhost:4000/", {
+         method: "POST",
+         body: formData
 
-   const onSubmit2 = () => {
-      console.log(entries);
-      Swal.fire("Great job!", "You've passed the challenge!", "success");
-      setSuccess(true);
+      });
+      if (res.status === 200) {
+         Swal.fire("Great job!", "You've passed the challenge!", "success");
+         setSuccess(true);
+      }
    };
+
    if (success) {
       return <Confetti/>;
    }
@@ -116,7 +109,7 @@ export const Result = () => {
                   </List>
                </>
             )}
-            <PrimaryButton onClick={ onSubmit2 }>Submit</PrimaryButton>
+            <PrimaryButton onClick={ onSubmit }>Submit</PrimaryButton>
             <Link to="/">Start over</Link>
          </MainContainer>
       </>
